@@ -170,6 +170,9 @@ class Job
     /** @ORM\Column(type = "integer", name="memoryUsageReal", nullable = true, options = {"unsigned": true}) */
     private $memoryUsageReal;
 
+    /** @ORM\Column(type = "string", name="title", length = 255, nullable = true) */
+    private $title;
+
     /**
      * This may store any entities which are related to this job, and are
      * managed by Doctrine.
@@ -240,6 +243,7 @@ class Job
         $this->memoryUsage = null;
         $this->memoryUsageReal = null;
         $this->relatedEntities = new ArrayCollection();
+        $this->title = null;
     }
 
     public function getId()
@@ -658,5 +662,25 @@ class Job
         }
 
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return Job
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }
